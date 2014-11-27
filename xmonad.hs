@@ -40,5 +40,7 @@ myConfig = defaultConfig
 myKeys = [ ((mod4Mask .|. shiftMask, xK_z), spawn "lock")
          , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
          , ((0, xK_Print), spawn "scrot")
+         , ((mod4Mask, xK_Return), spawn myTerminal)
+         , ((mod4Mask .|. shiftMask, xK_Return), spawn "konsole -e ranger")
          ]
         
