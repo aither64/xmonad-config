@@ -7,11 +7,21 @@ import System.IO
 
 myTerminal = "konsole"
 
+myManageHook = composeAll
+        [ className =? "Firefox"             --> doShift "1"
+        , className =? "kate"                --> doShift "2"
+        , className =? "jetbrains-rubymine"  --> doShift "2"
+        , className =? "Pidgin"              --> doShift "3"
+        , className =? "Thunderbird"         --> doShift "4"
+        , className =? "gmpc"                --> doShift "5"
+        ]
+
 main = do
         xmproc <- spawnPipe "xmobar /home/aither/.xmonad/xmobarrc"
         xmonad $ defaultConfig
                 {
-                        manageHook = manageDocks <+> manageHook defaultConfig
+                        workspaces = ["1","2","3","4","5","6","7","8","9"]
+                        , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
                         , layoutHook = avoidStruts  $  layoutHook defaultConfig
                         , logHook = dynamicLogWithPP xmobarPP
                                 { ppOutput = hPutStrLn xmproc
