@@ -8,10 +8,15 @@ import System.IO
 myTerminal = "konsole"
 
 main = do
+        xmproc <- spawnPipe "xmobar /home/aither/.xmonad/xmobarrc"
         xmonad $ defaultConfig
                 {
                         manageHook = manageDocks <+> manageHook defaultConfig
                         , layoutHook = avoidStruts  $  layoutHook defaultConfig
+                        , logHook = dynamicLogWithPP xmobarPP
+                                { ppOutput = hPutStrLn xmproc
+                                , ppTitle = xmobarColor "green" "" . shorten 50
+                                }
                         , modMask = mod4Mask
                         , terminal = myTerminal
                 } `additionalKeys`
