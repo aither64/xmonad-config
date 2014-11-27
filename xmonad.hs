@@ -2,7 +2,8 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig
+import qualified XMonad.StackSet as W
 import System.IO
 
 myTerminal = "konsole"
@@ -28,17 +29,16 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
 myConfig = defaultConfig
         {
+                --workspaces = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13"]
                 workspaces = ["1","2","3","4","5","6","7","8","9"]
                 , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
                 , layoutHook = avoidStruts  $  layoutHook defaultConfig
                 , modMask = mod4Mask
                 , terminal = myTerminal
-        } `additionalKeys`
-        [
-                ((mod4Mask .|. shiftMask, xK_z), spawn "lock")
-                , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
-                , ((0, xK_Print), spawn "scrot")
-        ]
+        }  `additionalKeys` myKeys
 
-
+myKeys = [ ((mod4Mask .|. shiftMask, xK_z), spawn "lock")
+         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
+         , ((0, xK_Print), spawn "scrot")
+         ]
         
