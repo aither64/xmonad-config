@@ -28,7 +28,7 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 myBar = "xmobar /home/aither/.xmonad/xmobarrc"
 
 myPP = defaultPP
-        { ppTitle = xmobarColor "#02a2ff" "" . shorten 50
+        { ppTitle = xmobarColor "#02a2ff" "" . shorten 100
         }
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
