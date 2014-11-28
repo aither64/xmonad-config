@@ -3,6 +3,8 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig
+import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.NoBorders
 import qualified XMonad.StackSet as W
 import System.IO
 import System.Exit
@@ -18,6 +20,7 @@ myManageHook = composeAll
         , className =? "Pidgin"              --> doShift "3"
         , className =? "Thunderbird"         --> doShift "4"
         , className =? "gmpc"                --> doShift "5"
+        , isFullscreen                       --> doFullFloat
         ]
 
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
@@ -33,7 +36,7 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myConfig = defaultConfig
         { workspaces = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13"]
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+        , layoutHook = smartBorders . avoidStruts  $  layoutHook defaultConfig
         , modMask = mod4Mask
         , terminal = myTerminal
         , keys = myKeys
