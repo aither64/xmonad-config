@@ -15,6 +15,7 @@ firefox &
 thunderbird &
 pidgin &
 gmpc &
+xfce4-volumed &
 
 exec xmonad
 

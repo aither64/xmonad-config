@@ -6,10 +6,11 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red","-t", "CPU: <total>%"] 30
                     , Run Memory ["-t","Mem: <usedratio>%"] 50
                     , Run Network "br0" ["-t", "<fc=#CC9393><rx></fc> <fc=#7F9F7F><tx></fc>", "-m", "4"] 30
+                    , Run Volume "default" "Master" [] 30
                     , Run Date "%a %b %_d %k:%M" "date" 100
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %br0% |  <fc=#ee9a00>%date%</fc> | %LKMT%"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %br0% | %default:Master% |  <fc=#ee9a00>%date%</fc> | %LKMT%"
        }
