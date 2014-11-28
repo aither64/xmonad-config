@@ -5,11 +5,11 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , commands = [ Run Weather "LKMT" ["-t"," <tempC>C","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red","-t", "CPU: <total>%"] 30
                     , Run Memory ["-t","Mem: <usedratio>%"] 50
-                    , Run Network "br0" ["--suffix", "True", "-t", "<fc=#CC9393><rx></fc> <fc=#7F9F7F><tx></fc>", "-m", "6"] 30
+                    , Run Network "br0" ["-t", "<fc=#CC9393><rx></fc> <fc=#7F9F7F><tx></fc>", "-m", "4"] 30
                     , Run Date "%a %b %_d %k:%M" "date" 100
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %br0%   <fc=#ee9a00>%date%</fc> | %LKMT%"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %br0% |  <fc=#ee9a00>%date%</fc> | %LKMT%"
        }
