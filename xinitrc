@@ -16,6 +16,7 @@ thunderbird &
 pidgin &
 gmpc &
 xfce4-volumed &
+haveclip &
 
 exec xmonad
 
