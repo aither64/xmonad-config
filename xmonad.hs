@@ -116,6 +116,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- Run xmessage with a summary of the default keybindings (useful for beginners)
         --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
         
+        -- HaveClip - synchronize clipboard
+        , ((modm              , xK_s     ), spawn "haveclip sync")
+        
         -- Lock the desktop
         , ((mod1Mask .|. controlMask, xK_l), spawn "lock")
         
