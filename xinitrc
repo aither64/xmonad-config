@@ -20,6 +20,7 @@ gmpc &
 xfce4-volumed &
 haveclip &
 
+[[ -f ~/.xmonad/$HOSTNAME.sh ]] && source ~/.xmonad/$HOSTNAME.sh
 [[ -f ~/.xmonad/local.sh ]] && source ~/.xmonad/local.sh
 
 exec xmonad
