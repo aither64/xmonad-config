@@ -6,6 +6,7 @@ import XMonad.Util.EZConfig
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import qualified XMonad.StackSet as W
+import XMonad.Layout.Grid
 import System.IO
 import System.Exit
 import qualified Data.Map        as M
@@ -23,6 +24,20 @@ myManageHook = composeAll
         , isFullscreen                       --> doFullFloat
         ]
 
+myLayout = tiled ||| Mirror tiled ||| Full ||| Grid
+  where
+     -- default tiling algorithm partitions the screen into two panes
+     tiled   = Tall nmaster delta ratio
+    
+     -- The default number of windows in the master pane
+     nmaster = 1
+
+     -- Default proportion of screen occupied by master pane
+     ratio   = 1/2
+
+     -- Percent of screen to increment by when resizing panes
+     delta   = 3/100
+
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 myBar = "xmobar /home/aither/.xmonad/xmobarrc"
@@ -36,7 +51,7 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myConfig = defaultConfig
         { workspaces = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13"]
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-        , layoutHook = smartBorders . avoidStruts  $  layoutHook defaultConfig
+        , layoutHook = smartBorders . avoidStruts  $  myLayout
         , modMask = mod4Mask
         , terminal = myTerminal
         , keys = myKeys
